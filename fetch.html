@@ -7,6 +7,7 @@
     <title>Document</title>
   </head>
   <body>
+    <div>hello</div>
     <script>
       function Fetch(v) {
         return {
@@ -14,8 +15,33 @@
         };
       }
 
+      function reqListener() {
+        console.log(this.responseText);
+      }
+      async function req() {
+        function request() {
+          return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            const url = "http://localhost:5555/xhr";
+
+            xhr.addEventListener("load", function () {
+              console.log("hi");
+              resolve(xhr);
+            });
+
+            xhr.addEventListener("error", reject);
+            xhr.open("GET", url, true);
+            xhr.send();
+          });
+        }
+        const res = await request();
+        console.log(res.response);
+      }
+      req();
+
       Fetch(5)
         .then((x) => x + 1)
+        .then(console.log)
         .then(console.log);
     </script>
   </body>

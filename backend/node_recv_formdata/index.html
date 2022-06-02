@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <input type="file" name="files" id="file" />
+    <br>
+    <input type="button" value="submit" onclick="upload()" >  </input>
+    <script>
+        function upload(){
+            
+            
+            
+            console.log("log");
+            var formData = new FormData();
+            formData.append("username", "Groucho");
+            formData.append("accountnum", 123456);
+
+            formData.append("userfile", fileInputElement.files[0]);
+
+              var content = '<a id="a"><b id="b"> hey! </b></a>';
+              var blob = new Blob([content], { type: "text/xml" });
+              formData.append("webmasterfile", blob);
+              var request = new XMLHttpRequest();
+              request.open("POST", "");
+              request.open("POST", "http://localhost:5555/upload");
+              request.send(formData);
+        }
+
+    </script>
+  </body>
+</html>
